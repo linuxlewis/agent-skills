@@ -1,0 +1,12 @@
+{
+  "name": "pr-responder",
+  "version": "1.0.0",
+  "description": "Review and respond to PR comments automatically. Analyzes PR feedback, recommends which comments to address, and implements approved changes.",
+  "author": {
+    "name": "linuxlewis"
+  },
+  "license": "MIT",
+  "keywords": ["github", "pr", "code-review", "comments", "automation"],
+  "commands": "./commands/",
+  "skills": "./skills/"
+}
