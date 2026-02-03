@@ -7,6 +7,5 @@
   },
   "license": "MIT",
   "keywords": ["github", "pr", "code-review", "comments", "automation"],
-  "commands": "./commands/",
-  "skills": "./skills/"
+  "commands": "./commands/"
 }

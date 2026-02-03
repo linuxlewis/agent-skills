@@ -1,24 +1,24 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "linuxlewis-skills",
-  "description": "Custom Claude Code plugins for browser automation and more",
+  "name": "linuxlewis-agent-skills",
+  "description": "Agent Skills for browser automation, PR review, and autonomous coding loops",
   "owner": {
     "name": "linuxlewis"
   },
   "plugins": [
     {
       "name": "agent-browser",
-      "description": "Browser automation skill using the agent-browser CLI for navigating and interacting with websites",
+      "description": "Browser automation using the agent-browser CLI for navigating and interacting with websites",
       "version": "1.0.0",
       "author": {
         "name": "linuxlewis"
       },
-      "source": "./plugins/agent-browser",
+      "source": "./skills/agent-browser",
       "category": "tools"
     },
     {
       "name": "pr-responder",
-      "description": "Review and respond to PR comments automatically. Analyzes PR feedback, recommends which comments to address, and implements approved changes.",
+      "description": "Review and respond to PR comments automatically. Analyzes feedback, classifies by priority, implements approved changes.",
       "version": "1.0.0",
       "author": {
         "name": "linuxlewis"
@@ -27,14 +27,14 @@
       "category": "development"
     },
     {
-      "name": "openclaw-notify",
-      "description": "Notify OpenClaw gateway when background tasks complete. Provides /notify command and skill for pinging the user who dispatched you.",
+      "name": "ralph-runner",
+      "description": "Run Ralph Wiggum autonomous coding loops. Implements features from PRD files iteratively with Claude Code.",
       "version": "1.0.0",
       "author": {
         "name": "linuxlewis"
       },
-      "source": "./plugins/openclaw-notify",
-      "category": "tools"
+      "source": "./skills/ralph-runner",
+      "category": "development"
     }
   ]
 }

@@ -1,82 +1,138 @@
-# Claude Skills
+# Agent Skills
 
-Custom Claude Code plugins and skills marketplace.
+A collection of [Agent Skills](https://agentskills.io) for AI coding assistants.
+
+Agent Skills are an open format for giving agents new capabilities and expertise. Skills are portable across different agent products including Claude Code, Claude.ai, and other compatible agents.
 
 ## Installation
 
-Add this marketplace to Claude Code:
+### Claude Code
+
+Add this marketplace:
 
 ```bash
-claude plugin marketplace add linuxlewis/claude-skills
+claude plugin marketplace add linuxlewis/agent-skills
 ```
 
-Then install plugins:
+Then install skills:
 
 ```bash
-claude plugin install agent-browser@linuxlewis-skills
-claude plugin install pr-responder@linuxlewis-skills
+claude plugin install agent-browser@linuxlewis-agent-skills
+claude plugin install pr-responder@linuxlewis-agent-skills
+claude plugin install ralph-runner@linuxlewis-agent-skills
 ```
 
-## Available Plugins
+### Standalone
+
+Skills in the `skills/` directory are Agent Skills compliant and can be used with any compatible agent. Copy the skill folder to your agent's skills directory.
+
+## Available Skills
 
 ### agent-browser
 
-Browser automation skill using the `agent-browser` CLI. Enables Claude to:
+Browser automation using the `agent-browser` CLI.
 
-- Navigate websites
-- Interact with page elements (click, type, fill)
+- Navigate websites and interact with page elements
 - Take screenshots and PDFs
-- Extract content from pages
-- Handle forms and interactive elements
+- Fill forms, click buttons, scrape content
+- Session management for multi-step workflows
+
+**Requirements:** `npm install -g agent-browser`
 
 ### pr-responder
 
-Review and respond to PR comments automatically. Features:
+Review and respond to GitHub PR comments.
 
-- Fetches all PR comments for the current branch
-- Categorizes comments by actionability (bugs, style, questions, etc.)
-- Presents recommendations for which comments to address
-- Implements approved changes automatically
-- Summarizes changes made
-
-**Command:** `/respond` - Review PR comments and implement approved changes
+- Fetch and classify PR review comments
+- Prioritize by actionability (bugs, security, style)
+- Implement approved changes
+- GitHub CLI commands reference
 
 **Requirements:** GitHub CLI (`gh`) installed and authenticated
 
-### openclaw-notify
+**Command:** `/respond` - Review PR comments for current branch
 
-Notify OpenClaw gateway when background tasks complete. Use when dispatched by OpenClaw/TARS for background work.
+### ralph-runner
 
-- Sends completion notifications back to the dispatching session
-- Simple one-liner: `openclaw gateway wake --text "message" --mode now`
+Run Ralph Wiggum autonomous coding loops.
 
-**Command:** `/notify <message>` - Send notification to OpenClaw
+- Execute PRD files with user stories
+- Iterative implementation with fresh context per story
+- Progress tracking and learnings
+- Context file injection
 
-**Requirements:** `openclaw` CLI installed, gateway running
+**Requirements:** `ralph-cli` and Claude Code CLI
 
 ## Structure
 
 ```
-claude-skills/
+agent-skills/
 ├── .claude-plugin/
-│   └── marketplace.json
-├── plugins/
+│   └── marketplace.json        # Claude Code marketplace
+├── skills/                      # Agent Skills compliant (portable)
 │   ├── agent-browser/
-│   │   ├── .claude-plugin/plugin.json
-│   │   ├── skills/agent-browser/SKILL.md
-│   │   └── README.md
+│   │   ├── SKILL.md            # Main skill file
+│   │   └── references/         # Additional docs
+│   │       └── commands.md
 │   ├── pr-responder/
-│   │   ├── .claude-plugin/plugin.json
-│   │   ├── commands/respond.md
-│   │   ├── skills/pr-reviewer/SKILL.md
-│   │   └── README.md
-│   └── openclaw-notify/
+│   │   ├── SKILL.md
+│   │   └── references/
+│   │       └── github-api.md
+│   └── ralph-runner/
+│       ├── SKILL.md
+│       └── references/
+│           └── prd-format.md
+├── plugins/                     # Claude Code specific (commands)
+│   └── pr-responder/
 │       ├── .claude-plugin/plugin.json
-│       ├── commands/notify.md
-│       ├── skills/openclaw-notify/SKILL.md
-│       └── README.md
+│       └── commands/
+│           └── respond.md
 └── README.md
 ```
+
+## Agent Skills Format
+
+Each skill follows the [Agent Skills specification](https://agentskills.io/specification):
+
+```markdown
+---
+name: skill-name
+description: What this skill does and when to use it.
+license: MIT
+compatibility: Required tools or environment
+metadata:
+  author: your-name
+  version: "1.0.0"
+---
+
+# Skill Name
+
+Instructions for the agent...
+```
+
+### Progressive Disclosure
+
+Skills use progressive disclosure for efficient context:
+
+1. **Metadata** (~100 tokens) - Name and description loaded at startup
+2. **Instructions** (< 500 lines) - Full SKILL.md loaded when activated
+3. **References** (as needed) - Additional docs in `references/` loaded on demand
+
+## Creating New Skills
+
+1. Create a folder in `skills/` with your skill name
+2. Add `SKILL.md` with frontmatter and instructions
+3. Optionally add `references/`, `scripts/`, or `assets/` directories
+4. Update `marketplace.json` to register with Claude Code
+
+See [agentskills.io](https://agentskills.io) for the complete specification.
+
+## Links
+
+- [Agent Skills Specification](https://agentskills.io/specification)
+- [Example Skills (Anthropic)](https://github.com/anthropics/skills)
+- [agent-browser CLI](https://github.com/anthropics/agent-browser)
+- [Ralph Wiggum](https://github.com/snarktank/ralph)
 
 ## License
 

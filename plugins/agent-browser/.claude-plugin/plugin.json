@@ -1,7 +1,0 @@
-{
-  "name": "agent-browser",
-  "description": "Browser automation skill using the agent-browser CLI for navigating and interacting with websites",
-  "author": {
-    "name": "linuxlewis"
-  }
-}
