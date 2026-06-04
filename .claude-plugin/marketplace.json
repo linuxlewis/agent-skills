@@ -45,6 +45,16 @@
       },
       "source": "./plugins/openclaw-notify",
       "category": "tools"
+    },
+    {
+      "name": "linuxlewis-code-review",
+      "description": "Review code using linuxlewis's review style: scope, backend performance, module design, API contracts, security, and useful tests.",
+      "version": "1.0.0",
+      "author": {
+        "name": "linuxlewis"
+      },
+      "source": "./skills/linuxlewis-code-review",
+      "category": "development"
     }
   ]
 }

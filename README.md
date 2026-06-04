@@ -8,14 +8,26 @@ Agent Skills are an open format for giving agents new capabilities and expertise
 
 ### Agent Skills CLI (Recommended)
 
-Install any skill directly using `npx`:
+Install skills directly with the `skills` CLI from npm. The examples below were
+verified with `skills@1.5.10`.
 
 ```bash
-# Install a skill
-npx skills add linuxlewis/agent-skills/skills/agent-browser
-npx skills add linuxlewis/agent-skills/skills/pr-responder
-npx skills add linuxlewis/agent-skills/skills/ralph-runner
-npx skills add linuxlewis/agent-skills/skills/openclaw-notify
+# List skills available in this repo
+npx skills add linuxlewis/agent-skills --list
+
+# Install one skill
+npx skills add linuxlewis/agent-skills --skill agent-browser
+npx skills add linuxlewis/agent-skills --skill pr-responder
+npx skills add linuxlewis/agent-skills --skill ralph-runner
+npx skills add linuxlewis/agent-skills --skill openclaw-notify
+npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review
+
+# Install all skills from this repo
+npx skills add linuxlewis/agent-skills --skill '*'
+
+# Install globally for a specific agent
+npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review -g -a codex -y
+npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review -g -a claude-code -y
 
 # List installed skills
 npx skills list
@@ -23,6 +35,16 @@ npx skills list
 # Remove a skill
 npx skills remove agent-browser
 ```
+
+The direct skill-path shorthand also works:
+
+```bash
+npx skills add linuxlewis/agent-skills/skills/linuxlewis-code-review
+```
+
+By default, `npx skills add` installs to the current project when run inside a
+project. Use `-g` for user-global installs. Use `-a codex`, `-a claude-code`, or
+another supported agent name to target a specific agent.
 
 ### Claude Code Plugin
 
@@ -37,6 +59,7 @@ claude plugin install agent-browser@linuxlewis-agent-skills
 claude plugin install pr-responder@linuxlewis-agent-skills
 claude plugin install ralph-runner@linuxlewis-agent-skills
 claude plugin install openclaw-notify@linuxlewis-agent-skills
+claude plugin install linuxlewis-code-review@linuxlewis-agent-skills
 ```
 
 ### Manual
@@ -92,6 +115,20 @@ Notify OpenClaw gateway when background tasks complete.
 
 **Command:** `/notify <message>` - Send notification to OpenClaw
 
+### linuxlewis-code-review
+
+Review code using linuxlewis's review style.
+
+- Focuses on scope, ownership boundaries, backend performance, API contracts,
+  security, data integrity, and useful tests
+- Includes specific heuristics for request-path latency, query shape,
+  backfills/management commands, and legacy-vs-new module design
+- Captures testing guidance around mocking external API boundaries instead of
+  patching the application code under review
+
+**Command:** `/linuxlewis-code-review` or invoke naturally when asking for a
+linuxlewis-style code review
+
 ## Structure
 
 ```
@@ -108,8 +145,11 @@ agent-skills/
 │   ├── ralph-runner/
 │   │   ├── SKILL.md
 │   │   └── references/
-│   └── openclaw-notify/
-│       └── SKILL.md
+│   ├── openclaw-notify/
+│   │   └── SKILL.md
+│   └── linuxlewis-code-review/
+│       ├── SKILL.md
+│       └── references/
 ├── plugins/                     # Claude Code specific (commands)
 │   ├── pr-responder/
 │   │   ├── .claude-plugin/plugin.json
