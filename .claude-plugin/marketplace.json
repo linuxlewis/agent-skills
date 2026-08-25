@@ -55,6 +55,16 @@
       },
       "source": "./skills/linuxlewis-code-review",
       "category": "development"
+    },
+    {
+      "name": "high-value-tests",
+      "description": "Write and review focused tests that protect distinct behaviors and risks without duplicate coverage.",
+      "version": "1.0.0",
+      "author": {
+        "name": "linuxlewis"
+      },
+      "source": "./skills/high-value-tests",
+      "category": "development"
     }
   ]
 }

@@ -21,12 +21,14 @@ npx skills add linuxlewis/agent-skills --skill pr-responder
 npx skills add linuxlewis/agent-skills --skill ralph-runner
 npx skills add linuxlewis/agent-skills --skill openclaw-notify
 npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review
+npx skills add linuxlewis/agent-skills --skill high-value-tests
 
 # Install all skills from this repo
 npx skills add linuxlewis/agent-skills --skill '*'
 
 # Install globally for a specific agent
 npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review -g -a codex -y
+npx skills add linuxlewis/agent-skills --skill high-value-tests -g -a codex -y
 npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review -g -a claude-code -y
 
 # List installed skills
@@ -60,6 +62,7 @@ claude plugin install pr-responder@linuxlewis-agent-skills
 claude plugin install ralph-runner@linuxlewis-agent-skills
 claude plugin install openclaw-notify@linuxlewis-agent-skills
 claude plugin install linuxlewis-code-review@linuxlewis-agent-skills
+claude plugin install high-value-tests@linuxlewis-agent-skills
 ```
 
 ### Manual
@@ -129,6 +132,16 @@ Review code using linuxlewis's review style.
 **Command:** `/linuxlewis-code-review` or invoke naturally when asking for a
 linuxlewis-style code review
 
+### high-value-tests
+
+Write and review the smallest test set that gives useful confidence in a code
+change.
+
+- Keep one strong primary-path test by default
+- Add tests only for distinct risks, contracts, or failure modes
+- Remove duplicate coverage and low-value permutations
+- Keep required security, data-integrity, and regression coverage
+
 ## Structure
 
 ```
@@ -147,9 +160,11 @@ agent-skills/
 │   │   └── references/
 │   ├── openclaw-notify/
 │   │   └── SKILL.md
-│   └── linuxlewis-code-review/
-│       ├── SKILL.md
-│       └── references/
+│   ├── linuxlewis-code-review/
+│   │   ├── SKILL.md
+│   │   └── references/
+│   └── high-value-tests/
+│       └── SKILL.md
 ├── plugins/                     # Claude Code specific (commands)
 │   ├── pr-responder/
 │   │   ├── .claude-plugin/plugin.json
