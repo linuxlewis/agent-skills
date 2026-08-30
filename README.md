@@ -153,6 +153,8 @@ Plan and maintain dependent GitHub pull requests as a reviewable stack.
 - Create branches and PRs with explicit root-to-leaf bases
 - Restack descendants safely when a parent changes
 - Land stacks cleanly across merge, squash, and rebase strategies
+- Use concrete command recipes for inserting, removing, reordering, and
+  repairing stack layers
 
 **Requirements:** Git and GitHub CLI (`gh`) authenticated for remote PR
 operations

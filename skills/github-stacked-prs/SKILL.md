@@ -97,7 +97,8 @@ downstream PRs as draft when their ancestor or interface is still likely to
 change; otherwise they may be reviewed in parallel, always as their unique
 diffs.
 
-For exact inspection, creation, and PR-body command patterns, read
+For exact commands to inspect, create, split, insert, remove, reorder, restack,
+land, and repair stack layers, read
 [Git and GitHub CLI recipes](references/git-gh-recipes.md).
 
 ## Maintain The Stack
@@ -105,8 +106,9 @@ For exact inspection, creation, and PR-body command patterns, read
 Apply a requested fix to the lowest branch that logically owns it. Then
 propagate the changed ancestry from that branch toward the leaf.
 
-- If a parent only gains commits, rebase its child onto the updated parent,
-  then continue root to leaf.
+- If a parent only gains commits, `git rebase <parent>` may update its immediate
+  child. That child is now rewritten, so use its saved old and new tips with
+  `--onto` when restacking the next descendant.
 - If a parent was amended, rebased, or otherwise rewritten, save the old and
   new parent tips and rebase the child with `--onto`. Repeat with the child's
   old and new tips for every descendant.
