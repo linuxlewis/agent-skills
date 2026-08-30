@@ -22,6 +22,7 @@ npx skills add linuxlewis/agent-skills --skill ralph-runner
 npx skills add linuxlewis/agent-skills --skill openclaw-notify
 npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review
 npx skills add linuxlewis/agent-skills --skill high-value-tests
+npx skills add linuxlewis/agent-skills --skill github-stacked-prs
 
 # Install all skills from this repo
 npx skills add linuxlewis/agent-skills --skill '*'
@@ -29,6 +30,7 @@ npx skills add linuxlewis/agent-skills --skill '*'
 # Install globally for a specific agent
 npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review -g -a codex -y
 npx skills add linuxlewis/agent-skills --skill high-value-tests -g -a codex -y
+npx skills add linuxlewis/agent-skills --skill github-stacked-prs -g -a codex -y
 npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review -g -a claude-code -y
 
 # List installed skills
@@ -63,6 +65,7 @@ claude plugin install ralph-runner@linuxlewis-agent-skills
 claude plugin install openclaw-notify@linuxlewis-agent-skills
 claude plugin install linuxlewis-code-review@linuxlewis-agent-skills
 claude plugin install high-value-tests@linuxlewis-agent-skills
+claude plugin install github-stacked-prs@linuxlewis-agent-skills
 ```
 
 ### Manual
@@ -142,6 +145,18 @@ change.
 - Remove duplicate coverage and low-value permutations
 - Keep required security, data-integrity, and regression coverage
 
+### github-stacked-prs
+
+Plan and maintain dependent GitHub pull requests as a reviewable stack.
+
+- Decide when work should be a stack, one PR, or independent PRs
+- Create branches and PRs with explicit root-to-leaf bases
+- Restack descendants safely when a parent changes
+- Land stacks cleanly across merge, squash, and rebase strategies
+
+**Requirements:** Git and GitHub CLI (`gh`) authenticated for remote PR
+operations
+
 ## Structure
 
 ```
@@ -163,8 +178,11 @@ agent-skills/
 │   ├── linuxlewis-code-review/
 │   │   ├── SKILL.md
 │   │   └── references/
-│   └── high-value-tests/
-│       └── SKILL.md
+│   ├── high-value-tests/
+│   │   └── SKILL.md
+│   └── github-stacked-prs/
+│       ├── SKILL.md
+│       └── references/
 ├── plugins/                     # Claude Code specific (commands)
 │   ├── pr-responder/
 │   │   ├── .claude-plugin/plugin.json
