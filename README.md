@@ -150,11 +150,11 @@ change.
 Create and manage GitHub's native Stacked PRs with the official `gh stack`
 extension and GitHub stack UI.
 
-- Create or link the native GitHub Stack object, not only chained PR bases
-- Plan reviewable layers and navigate, rebase, push, submit, and sync them
-- Use trunk-aware rules, CI, server-side rebasing, and native stack maps
-- Merge contiguous stack portions atomically or through a merge queue
-- Recover from conflicts, local/remote divergence, and interrupted operations
+- Decide when dependent work should be a stack and plan its layers
+- Create new stacks or link existing branches and PRs
+- Update, navigate, sync, and restructure stack layers
+- Merge part or all of a stack with native GitHub semantics
+- Unstack work without deleting its branches or PRs
 
 **Requirements:** Git 2.20+, GitHub CLI 2.90+, and the official extension:
 
