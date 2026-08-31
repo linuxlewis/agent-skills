@@ -67,13 +67,13 @@
       "category": "development"
     },
     {
-      "name": "github-stacked-prs",
-      "description": "Plan, create, maintain, and land dependent GitHub pull requests as a reviewable stack.",
+      "name": "gh-stack",
+      "description": "Create and manage GitHub's native Stacked PRs with the official gh stack extension.",
       "version": "1.0.0",
       "author": {
         "name": "linuxlewis"
       },
-      "source": "./skills/github-stacked-prs",
+      "source": "./skills/gh-stack",
       "category": "development"
     }
   ]

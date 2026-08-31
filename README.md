@@ -22,7 +22,7 @@ npx skills add linuxlewis/agent-skills --skill ralph-runner
 npx skills add linuxlewis/agent-skills --skill openclaw-notify
 npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review
 npx skills add linuxlewis/agent-skills --skill high-value-tests
-npx skills add linuxlewis/agent-skills --skill github-stacked-prs
+npx skills add linuxlewis/agent-skills --skill gh-stack
 
 # Install all skills from this repo
 npx skills add linuxlewis/agent-skills --skill '*'
@@ -30,7 +30,7 @@ npx skills add linuxlewis/agent-skills --skill '*'
 # Install globally for a specific agent
 npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review -g -a codex -y
 npx skills add linuxlewis/agent-skills --skill high-value-tests -g -a codex -y
-npx skills add linuxlewis/agent-skills --skill github-stacked-prs -g -a codex -y
+npx skills add linuxlewis/agent-skills --skill gh-stack -g -a codex -y
 npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review -g -a claude-code -y
 
 # List installed skills
@@ -65,7 +65,7 @@ claude plugin install ralph-runner@linuxlewis-agent-skills
 claude plugin install openclaw-notify@linuxlewis-agent-skills
 claude plugin install linuxlewis-code-review@linuxlewis-agent-skills
 claude plugin install high-value-tests@linuxlewis-agent-skills
-claude plugin install github-stacked-prs@linuxlewis-agent-skills
+claude plugin install gh-stack@linuxlewis-agent-skills
 ```
 
 ### Manual
@@ -145,19 +145,26 @@ change.
 - Remove duplicate coverage and low-value permutations
 - Keep required security, data-integrity, and regression coverage
 
-### github-stacked-prs
+### gh-stack
 
-Plan and maintain dependent GitHub pull requests as a reviewable stack.
+Create and manage GitHub's native Stacked PRs with the official `gh stack`
+extension and GitHub stack UI.
 
-- Decide when work should be a stack, one PR, or independent PRs
-- Create branches and PRs with explicit root-to-leaf bases
-- Restack descendants safely when a parent changes
-- Land stacks cleanly across merge, squash, and rebase strategies
-- Use concrete command recipes for inserting, removing, reordering, and
-  repairing stack layers
+- Create or link the native GitHub Stack object, not only chained PR bases
+- Plan reviewable layers and navigate, rebase, push, submit, and sync them
+- Use trunk-aware rules, CI, server-side rebasing, and native stack maps
+- Merge contiguous stack portions atomically or through a merge queue
+- Recover from conflicts, local/remote divergence, and interrupted operations
 
-**Requirements:** Git and GitHub CLI (`gh`) authenticated for remote PR
-operations
+**Requirements:** Git 2.20+, GitHub CLI 2.90+, and the official extension:
+
+```bash
+gh extension install github/gh-stack
+```
+
+**Upstream:** Based on GitHub's official
+[`github/gh-stack`](https://github.com/github/gh-stack) skill and current
+Stacked PRs public-preview documentation.
 
 ## Structure
 
@@ -182,7 +189,7 @@ agent-skills/
 │   │   └── references/
 │   ├── high-value-tests/
 │   │   └── SKILL.md
-│   └── github-stacked-prs/
+│   └── gh-stack/
 │       ├── SKILL.md
 │       └── references/
 ├── plugins/                     # Claude Code specific (commands)
