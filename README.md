@@ -22,6 +22,7 @@ npx skills add linuxlewis/agent-skills --skill ralph-runner
 npx skills add linuxlewis/agent-skills --skill openclaw-notify
 npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review
 npx skills add linuxlewis/agent-skills --skill high-value-tests
+npx skills add linuxlewis/agent-skills --skill gh-stack
 
 # Install all skills from this repo
 npx skills add linuxlewis/agent-skills --skill '*'
@@ -29,6 +30,7 @@ npx skills add linuxlewis/agent-skills --skill '*'
 # Install globally for a specific agent
 npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review -g -a codex -y
 npx skills add linuxlewis/agent-skills --skill high-value-tests -g -a codex -y
+npx skills add linuxlewis/agent-skills --skill gh-stack -g -a codex -y
 npx skills add linuxlewis/agent-skills --skill linuxlewis-code-review -g -a claude-code -y
 
 # List installed skills
@@ -63,6 +65,7 @@ claude plugin install ralph-runner@linuxlewis-agent-skills
 claude plugin install openclaw-notify@linuxlewis-agent-skills
 claude plugin install linuxlewis-code-review@linuxlewis-agent-skills
 claude plugin install high-value-tests@linuxlewis-agent-skills
+claude plugin install gh-stack@linuxlewis-agent-skills
 ```
 
 ### Manual
@@ -142,6 +145,27 @@ change.
 - Remove duplicate coverage and low-value permutations
 - Keep required security, data-integrity, and regression coverage
 
+### gh-stack
+
+Create and manage GitHub's native Stacked PRs with the official `gh stack`
+extension and GitHub stack UI.
+
+- Decide when dependent work should be a stack and plan its layers
+- Create new stacks or link existing branches and PRs
+- Update, navigate, sync, and restructure stack layers
+- Merge part or all of a stack with native GitHub semantics
+- Unstack work without deleting its branches or PRs
+
+**Requirements:** Git 2.20+, GitHub CLI 2.90+, and the official extension:
+
+```bash
+gh extension install github/gh-stack
+```
+
+**Upstream:** Based on GitHub's official
+[`github/gh-stack`](https://github.com/github/gh-stack) skill and current
+Stacked PRs public-preview documentation.
+
 ## Structure
 
 ```
@@ -163,8 +187,11 @@ agent-skills/
 │   ├── linuxlewis-code-review/
 │   │   ├── SKILL.md
 │   │   └── references/
-│   └── high-value-tests/
-│       └── SKILL.md
+│   ├── high-value-tests/
+│   │   └── SKILL.md
+│   └── gh-stack/
+│       ├── SKILL.md
+│       └── references/
 ├── plugins/                     # Claude Code specific (commands)
 │   ├── pr-responder/
 │   │   ├── .claude-plugin/plugin.json

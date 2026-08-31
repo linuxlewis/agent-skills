@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "linuxlewis-agent-skills",
-  "description": "Agent Skills for browser automation, PR review, and autonomous coding loops",
+  "description": "Agent Skills for browser automation, PR workflows, testing, and autonomous coding loops",
   "owner": {
     "name": "linuxlewis"
   },
@@ -64,6 +64,16 @@
         "name": "linuxlewis"
       },
       "source": "./skills/high-value-tests",
+      "category": "development"
+    },
+    {
+      "name": "gh-stack",
+      "description": "Create and manage GitHub's native Stacked PRs with the official gh stack extension.",
+      "version": "1.0.0",
+      "author": {
+        "name": "linuxlewis"
+      },
+      "source": "./skills/gh-stack",
       "category": "development"
     }
   ]
